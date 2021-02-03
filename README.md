@@ -44,7 +44,7 @@
 | ------           | ------ | ----------- |
 | user             | references | null: false , foreign_key: true |
 | item             | references | null: false , foreign_key: true |
-| shopping_address | references | null: false , foreign_key: true |
+| shopping_address | references | null: false |
 
 ### Association
 - belongs_to :item
@@ -57,7 +57,7 @@
 | Column        | Type       | Options     |
 | ------        | ------     | ----------- |
 | postal_code   | string     | null: false |
-| prefecture_id | integer    | int         |
+| prefecture_id | integer    | null: false |
 | city          | string     | null: false |
 | address       | string     | null: false |
 | building      | string     |
