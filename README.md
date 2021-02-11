@@ -27,7 +27,7 @@
 | info                   | text       | null: false |
 | category_id            | integer    | null: false |
 | status_id              | integer    | null: false |
-| shopping_fee_status_id | integer    | null: false |
+| shipping_fee_status_id | integer    | null: false |
 | prefecture_id          | integer    | null: false |
 | scheduled_delivery_id  | integer    | null: false |
 | price                  | integer    | null: false |
@@ -49,7 +49,7 @@
 ### Association
 - belongs_to :item
 - belongs_to :user
-- has_one :shopping_address
+- has_one :shpping_address
 
 
 # shopping_address テーブル
