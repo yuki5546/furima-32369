@@ -38,30 +38,30 @@ RSpec.describe Item, type: :model do
         @item.valid?
         expect(@item.errors.full_messages).to include("Info can't be blank")
       end
-      it 'category_idが空では登録できない' do
-        @item.category_id = nil
+      it 'category_idが---では登録できない' do
+        @item.category_id = 1
         @item.valid?
-        expect(@item.errors.full_messages).to include("Category can't be blank")
+        expect(@item.errors.full_messages).to include("Category Select")
       end
-      it 'status_idが空では登録できない' do
-        @item.status_id = nil
+      it 'status_idが---では登録できない' do
+        @item.status_id = 1
         @item.valid?
-        expect(@item.errors.full_messages).to include("Status can't be blank")
+        expect(@item.errors.full_messages).to include("Status Select")
       end
-      it 'shipping_fee_status_idが空では登録できない' do
-        @item.shipping_fee_status_id = nil
+      it 'shipping_fee_status_idが---では登録できない' do
+        @item.shipping_fee_status_id = 1
         @item.valid?
-        expect(@item.errors.full_messages).to include("Shipping fee status can't be blank")
+        expect(@item.errors.full_messages).to include("Shipping fee status Select")
       end
-      it 'prefecture_idが空では登録できない' do
-        @item.prefecture_id = nil
+      it 'prefecture_idが---では登録できない' do
+        @item.prefecture_id = 1
         @item.valid?
-        expect(@item.errors.full_messages).to include("Prefecture can't be blank")
+        expect(@item.errors.full_messages).to include("Prefecture Select")
       end
-      it 'scheduled_delivery_idが空では登録できない' do
-        @item.scheduled_delivery_id = nil
+      it 'scheduled_delivery_idが---では登録できない' do
+        @item.scheduled_delivery_id = 1
         @item.valid?
-        expect(@item.errors.full_messages).to include("Scheduled delivery can't be blank")
+        expect(@item.errors.full_messages).to include("Scheduled delivery Select")
       end
       it 'priceが空では登録できない' do
         @item.price = nil
@@ -69,12 +69,12 @@ RSpec.describe Item, type: :model do
         expect(@item.errors.full_messages).to include("Price can't be blank")
       end
       it 'priceが¥299以下では登録できない' do
-        @item.price = '299'
+        @item.price = 299
         @item.valid?
         expect(@item.errors.full_messages).to include('Price Out of setting range')
       end
       it 'priceが¥10,000,000以上では登録できない' do
-        @item.price = '10000000'
+        @item.price = 10000000
         @item.valid?
         expect(@item.errors.full_messages).to include('Price Out of setting range')
       end
