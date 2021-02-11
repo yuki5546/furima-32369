@@ -9,11 +9,13 @@ class Item < ApplicationRecord
     validates :info
     validates :price, numericality: { only_integer: true, message: 'Half-width number' },
                       inclusion: { in: 300..9_999_999, message: 'Out of setting range' }
-    validates :category_id, numericality: { other_than: 1, message: 'Select' }
-    validates :status_id, numericality: { other_than: 1, message: 'Select' }
-    validates :shipping_fee_status_id, numericality: { other_than: 1, message: 'Select' }
-    validates :prefecture_id, numericality: { other_than: 1, message: 'Select' }
-    validates :scheduled_delivery_id, numericality: { other_than: 1, message: 'Select' }
+    with_options numericality: { other_than: 1, message: 'Select' } do
+      validates :category_id
+      validates :status_id
+      validates :shipping_fee_status_id
+      validates :prefecture_id
+      validates :scheduled_delivery_id
+    end
   end
 
   extend ActiveHash::Associations::ActiveRecordExtensions
