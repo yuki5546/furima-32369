@@ -41,27 +41,27 @@ RSpec.describe Item, type: :model do
       it 'category_idが---では登録できない' do
         @item.category_id = 1
         @item.valid?
-        expect(@item.errors.full_messages).to include("Category Select")
+        expect(@item.errors.full_messages).to include('Category Select')
       end
       it 'status_idが---では登録できない' do
         @item.status_id = 1
         @item.valid?
-        expect(@item.errors.full_messages).to include("Status Select")
+        expect(@item.errors.full_messages).to include('Status Select')
       end
       it 'shipping_fee_status_idが---では登録できない' do
         @item.shipping_fee_status_id = 1
         @item.valid?
-        expect(@item.errors.full_messages).to include("Shipping fee status Select")
+        expect(@item.errors.full_messages).to include('Shipping fee status Select')
       end
       it 'prefecture_idが---では登録できない' do
         @item.prefecture_id = 1
         @item.valid?
-        expect(@item.errors.full_messages).to include("Prefecture Select")
+        expect(@item.errors.full_messages).to include('Prefecture Select')
       end
       it 'scheduled_delivery_idが---では登録できない' do
         @item.scheduled_delivery_id = 1
         @item.valid?
-        expect(@item.errors.full_messages).to include("Scheduled delivery Select")
+        expect(@item.errors.full_messages).to include('Scheduled delivery Select')
       end
       it 'priceが空では登録できない' do
         @item.price = nil
@@ -74,7 +74,7 @@ RSpec.describe Item, type: :model do
         expect(@item.errors.full_messages).to include('Price Out of setting range')
       end
       it 'priceが¥10,000,000以上では登録できない' do
-        @item.price = 10000000
+        @item.price = 10_000_000
         @item.valid?
         expect(@item.errors.full_messages).to include('Price Out of setting range')
       end
