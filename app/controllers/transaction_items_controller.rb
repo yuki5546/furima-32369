@@ -4,7 +4,6 @@ class TransactionItemsController < ApplicationController
   before_action :move_to_index, only: [:index, :create]
 
   def index
-    # @item = Item.find(params[:item_id])
     @order = Order.new
   end
 
