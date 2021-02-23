@@ -14,7 +14,7 @@ class TransactionItemsController < ApplicationController
       @order.save
       redirect_to root_path
     else
-      redirect_to action: :index
+      render action: :index
     end
   end
 

@@ -4,7 +4,9 @@ RSpec.describe Order, type: :model do
   describe '商品購入機能' do
     before do
       @user = FactoryBot.create(:user)
+      sleep(1)
       @item = FactoryBot.create(:item)
+      sleep(1)
       @order = FactoryBot.build(:order, user_id: @user.id , item_id: @item.id)
     end
 
@@ -41,7 +43,7 @@ RSpec.describe Order, type: :model do
         expect(@order.errors.full_messages).to include("Postal code can't be blank")
       end
       it 'postal_codeにハイフンがなければ保存できないこと' do
-        @order.postal_code = 1_234_567
+        @order.postal_code = '1_234_567'
         @order.valid?
         expect(@order.errors.full_messages).to include('Postal code Input correctly')
       end
@@ -74,6 +76,11 @@ RSpec.describe Order, type: :model do
         @order.phone_number = '090000000000'
         @order.valid?
         expect(@order.errors.full_messages).to include('Phone number Out of setting range')
+      end
+      it 'phone_numberが全角数字だと登録できないこと' do
+        @order.phone_number = '０９０００００００００'
+        @order.valid?
+        expect(@order.errors.full_messages).to include('Phone number Input only number')
       end
       it 'item_idが空だと保存できないこと' do
         @order.item_id = nil
