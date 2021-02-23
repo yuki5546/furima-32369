@@ -1,11 +1,11 @@
 class TransactionItemsController < ApplicationController
-  before_action :authenticate_user!, only: %i[index, create]
-  before_action :find_params, only: %i[create]
-  before_action :move_to_index, only: %i[index, create]
+  before_action :authenticate_user!, only: [:index, :create]
+  before_action :find_params, only: [:index, :create]
+  before_action :move_to_index, only: [:index, :create]
 
   def index
+    # @item = Item.find(params[:item_id])
     @order = Order.new
-    find_params
   end
 
   def create
@@ -41,6 +41,6 @@ class TransactionItemsController < ApplicationController
   end
 
   def move_to_index
-    redirect_to root_path if current_user == item.user || item.transaction_item.presence
+    redirect_to root_path if current_user == @item.user || @item.transaction_item.presence
   end
 end
