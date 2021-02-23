@@ -49,10 +49,10 @@
 ### Association
 - belongs_to :item
 - belongs_to :user
-- has_one :shpping_address
+- has_one :shipping_address
 
 
-# shopping_address テーブル
+# shipping_address テーブル
 
 | Column           | Type       | Options     |
 | ------           | ------     | ----------- |
