@@ -1,6 +1,7 @@
 class TransactionItemsController < ApplicationController
-  before_action :authenticate_user!, only: %i[index]
-  before_action :move_to_index, only: %i[index]
+  before_action :authenticate_user!, only: %i[index, create]
+  before_action :find_params, only: %i[create]
+  before_action :move_to_index, only: %i[index, create]
 
   def index
     @order = Order.new
@@ -9,13 +10,12 @@ class TransactionItemsController < ApplicationController
 
   def create
     @order = Order.new(order_params)
-    find_params
     if @order.valid?
       pay_item
       @order.save
       redirect_to root_path
     else
-      render action: :index
+      redirect_to action: :index
     end
   end
 
@@ -41,7 +41,6 @@ class TransactionItemsController < ApplicationController
   end
 
   def move_to_index
-    item = Item.find(params[:item_id])
     redirect_to root_path if current_user == item.user || item.transaction_item.presence
   end
 end

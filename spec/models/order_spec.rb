@@ -3,7 +3,9 @@ require 'rails_helper'
 RSpec.describe Order, type: :model do
   describe '商品購入機能' do
     before do
-      @order = FactoryBot.build(:order)
+      @user = FactoryBot.create(:user)
+      @item = FactoryBot.create(:item)
+      @order = FactoryBot.build(:order, user_id: @user.id , item_id: @item.id)
     end
 
     context '商品出品ができる時' do
@@ -67,6 +69,21 @@ RSpec.describe Order, type: :model do
         @order.phone_number = '090-000-000'
         @order.valid?
         expect(@order.errors.full_messages).to include('Phone number Input only number')
+      end
+      it 'phone_numberが11桁よりも多い場合保存できないこと' do
+        @order.phone_number = '090000000000'
+        @order.valid?
+        expect(@order.errors.full_messages).to include('Phone number Out of setting range')
+      end
+      it 'item_idが空だと保存できないこと' do
+        @order.item_id = nil
+        @order.valid?
+        expect(@order.errors.full_messages).to include("Item can't be blank")
+      end
+      it 'user_idが空だと保存できないこと' do
+        @order.user_id = nil
+        @order.valid?
+        expect(@order.errors.full_messages).to include("User can't be blank")
       end
     end
   end

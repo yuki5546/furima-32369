@@ -8,7 +8,9 @@ class Order
     validates :prefecture, numericality: { other_than: 1, message: 'Select' }
     validates :city
     validates :address
-    validates :phone_number, format: { with: /\A[0-9]+\z/, message: 'Input only number' }
+    validates :phone_number, length: { maximum: 11, message: 'Out of setting range' }, format: { with: /\A[0-9]+\z/, message: 'Input only number' }
+    validates :user_id
+    validates :item_id
   end
 
   def save
